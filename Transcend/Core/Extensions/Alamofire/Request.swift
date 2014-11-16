@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import Alamofire
 
-
+/*
 extension Alamofire.Request {
     
     public func responseObject<T: TranscendModelProtocol>(completionHandler: (NSURLRequest, NSHTTPURLResponse?, T?, NSError?) -> Void) -> Self {
@@ -24,6 +23,7 @@ extension Alamofire.Request {
             // Check i success return with type of T
             if response != nil && JSON != nil {
                 return (T(response: response!, representation: JSON!), nil)
+                
             } else {
                 // Return ni and error info from serializer
                 return (nil, serializationError)
@@ -37,4 +37,4 @@ extension Alamofire.Request {
         })
     }
     
-}
+}*/

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB55CFFC1A17D63B00345C9C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB55CFF91A17D63B00345C9C /* Request.swift */; };
+		BB55CFFD1A17D63B00345C9C /* TrancendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB55CFFA1A17D63B00345C9C /* TrancendModel.swift */; };
+		BB55CFFE1A17D63B00345C9C /* Transcend.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB55CFFB1A17D63B00345C9C /* Transcend.swift */; };
 		BBE78B0B1A170B0A00725475 /* Transcend.h in Headers */ = {isa = PBXBuildFile; fileRef = BBE78B0A1A170B0A00725475 /* Transcend.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BBE78B111A170B0A00725475 /* Transcend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE78B051A170B0A00725475 /* Transcend.framework */; };
 		BBE78B181A170B0A00725475 /* TranscendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE78B171A170B0A00725475 /* TranscendTests.swift */; };
@@ -23,6 +26,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB55CFF91A17D63B00345C9C /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		BB55CFFA1A17D63B00345C9C /* TrancendModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrancendModel.swift; sourceTree = "<group>"; };
+		BB55CFFB1A17D63B00345C9C /* Transcend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transcend.swift; sourceTree = "<group>"; };
 		BBE78B051A170B0A00725475 /* Transcend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Transcend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBE78B091A170B0A00725475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBE78B0A1A170B0A00725475 /* Transcend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Transcend.h; sourceTree = "<group>"; };
@@ -50,6 +56,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB55CFF61A17D63B00345C9C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				BB55CFF71A17D63B00345C9C /* Extensions */,
+				BB55CFFA1A17D63B00345C9C /* TrancendModel.swift */,
+				BB55CFFB1A17D63B00345C9C /* Transcend.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		BB55CFF71A17D63B00345C9C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BB55CFF81A17D63B00345C9C /* Alamofire */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BB55CFF81A17D63B00345C9C /* Alamofire */ = {
+			isa = PBXGroup;
+			children = (
+				BB55CFF91A17D63B00345C9C /* Request.swift */,
+			);
+			path = Alamofire;
+			sourceTree = "<group>";
+		};
 		BBE78AFB1A170B0A00725475 = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +103,7 @@
 		BBE78B071A170B0A00725475 /* Transcend */ = {
 			isa = PBXGroup;
 			children = (
+				BB55CFF61A17D63B00345C9C /* Core */,
 				BBE78B0A1A170B0A00725475 /* Transcend.h */,
 				BBE78B081A170B0A00725475 /* Supporting Files */,
 			);
@@ -209,6 +242,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB55CFFD1A17D63B00345C9C /* TrancendModel.swift in Sources */,
+				BB55CFFC1A17D63B00345C9C /* Request.swift in Sources */,
+				BB55CFFE1A17D63B00345C9C /* Transcend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +431,7 @@
 				BBE78B1D1A170B0A00725475 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BBE78B1E1A170B0A00725475 /* Build configuration list for PBXNativeTarget "TranscendTests" */ = {
 			isa = XCConfigurationList;
@@ -403,6 +440,7 @@
 				BBE78B201A170B0A00725475 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

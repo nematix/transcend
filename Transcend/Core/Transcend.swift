@@ -7,7 +7,43 @@
 //
 
 import Foundation
-import Alamofire
+
+
+
+// Tuplec Equatable
+func ==<L,R>(r:Tuplec<L,R>,l:Tuplec<L,R>) -> Bool {
+    return r.hashValue == l.hashValue
+}
+
+// Tuplec Hashable
+class Tuplec<L,R> : Hashable {
+    var _tuplet: (Any,Any)
+    
+    var hashValue: Int {
+        get {
+            let leftTupleReflection = reflect(_tuplet.0)
+            let leftHash = leftTupleReflection.value
+            
+            let rightTupleReflection = reflect(_tuplet.1)
+            let rightHash = rightTupleReflection.value
+            
+            return "\(leftHash)\(rightHash)".hashValue
+        }
+    }
+    
+    init(l:L,r:R){
+        _tuplet = (l,r)
+    }
+}
+
+
+// Tuplec infix operator
+infix operator ! {}
+func ! <L,R>(l:L,r:R) -> Tuplec<L,R> {
+    return Tuplec(l: l,r: r)
+}
+
+typealias TuplecType = Tuplec<Any,Any>
 
 
 class Transcend {
@@ -35,7 +71,7 @@ class Transcend {
     //
     //
     //
-    private func _requestGET(target:TranscendModel,subscriber:RACSubscriber){
+    /*private func _requestGET(target:TranscendModel,subscriber:RACSubscriber){
         let endpoint = target._request["endpoint"] as String
         let params = target._request["params"] as [String:AnyObject]
 
@@ -46,28 +82,27 @@ class Transcend {
             }.responseObject{ (_, _, object:TranscendModel?, _) -> Void in
                 subscriber.sendNext(object)
             }
-    }
+    }*/
     
     
     //
+    // Signalable
     //
-    //
-    func Signalable(target:TranscendModel) -> RACSignal {
+    /*func Signalable(target:TranscendModel) -> RACSignal {
         // Create signal from model
         return RACSignal.createSignal{ (subscriber:RACSubscriber!) -> RACDisposable! in
             self._requestGET(target, subscriber: subscriber)
             
             return RACDisposable()
         }
-    }
+    }*/
     
     
     //
-    //
+    // Hydrate
     //
     func Hydrate<T: TranscendModelProtocol>(data:AnyObject!, completion: (T?,NSError?) -> Void) -> Self {
-        completion(T(response: nil, representation: data),nil)
-
+        completion(T(representation: data),nil)
         return self
     }
     

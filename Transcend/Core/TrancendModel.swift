@@ -10,28 +10,82 @@ import Foundation
 
 
 @objc public protocol TranscendModelProtocol {
-    //var _request:[String:Any] {get}
-    
-    init(response: NSHTTPURLResponse?, representation: AnyObject)
+    //init(response: NSHTTPURLResponse?, representation: AnyObject)
+    init(representation: AnyObject)
 }
 
 
+
 class TranscendModel: NSObject, TranscendModelProtocol {
-    var _request:[String:Any] = [:]
+    private var _knowledges: [TuplecType:Any] = [:]
     
-    required init(response: NSHTTPURLResponse?, representation: AnyObject) {
+    //var Knowledges: [TuplecType:Any] { get{ return _knowledges } }
+    //var _request:[String:Any] = [:]
+    
+    
+    required init(representation: AnyObject) {
         super.init()
         
-        // Get self reflection
-        let me = reflect(self)
+        let className: AnyObject.Type = representation.dynamicType
+        
+        _knowledges["Static" ! className] = representation
+        Imitate(self)
+    }
+    
+    
+    // Imitate
+    // Using knowledge to produce another knowledge by educing existing knowledge
+    func Imitate<T>(object:T) -> TranscendModel{
+        // Get object reflection
+        let reflection = reflect(object)
+        
+        // Get concrete class
+        let classConcrete: TranscendModel = object as TranscendModel
+        
+        // Get static knowledges
+        let source = _knowledges[ "Static" ! classConcrete.self ] as TranscendModel
         
         // Iterate all property
-        for index in 0 ..< me.count {
-            let (key,propertyObject) = me[index]
+        for index in 0 ..< reflection.count {
+            let (key,propertyObject) = reflection[index]
             
-            if let propertyValue = representation.valueForKeyPath(key) as? String {
-                self.setValue(propertyValue, forKey: key)
+            // Imitate acceptable knowledge into learner
+            if let propertyValue = source.valueForKeyPath(key) as? String {
+                classConcrete.setValue(propertyValue, forKey: key)
             }
         }
+        
+        // Return learner
+        return classConcrete
     }
+    
+    
+    // Imitate
+    // Using knowledge to produce another knowledge by educing existing knowledge
+    /*func Imitate<T,U>(source:T,object:U) -> U{
+    
+    switch object.dynamicType {
+    // TranscendModel learner
+    case let TranscendModel :
+    let sourceKnowledge = source as TranscendType
+    let transcendObject = object as TranscendType
+    
+    // Get object reflection
+    let reflection = reflect(transcendObject)
+    
+    // Iterate all property
+    for index in 0 ..< reflection.count {
+    let (key,propertyObject) = reflection[index]
+    
+    // Imitate acceptable knowledge into learner
+    if let propertyValue = sourceKnowledge.Knowledges.valueForKeyPath(key) as? String {
+    transcendObject.setValue(propertyValue, forKey: key)
+    }
+    }
+    
+    // Return learner
+    return transcendObject as U
+    }
+    }*/
+    
 }
